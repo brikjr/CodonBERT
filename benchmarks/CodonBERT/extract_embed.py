@@ -2,7 +2,7 @@
 import os
 import pickle
 import sys
-
+from tqdm import tqdm
 import hydra
 import torch
 from transformers import BertForPreTraining
@@ -15,7 +15,10 @@ from utils.tokenizer import get_tokenizer
 
 @hydra.main(version_base=None, config_path="./", config_name="config")
 def main(cfg):
-    cuda = torch.cuda.is_available()
+    # Check for MPS availability instead of CUDA
+    use_mps = torch.backends.mps.is_available()
+    device = torch.device("mps" if use_mps else "cpu")
+    
     tokenizer = get_tokenizer()
 
     print("loading seqs")
@@ -23,17 +26,22 @@ def main(cfg):
 
     # https://huggingface.co/transformers/v3.0.2/model_doc/bert.html#bertformaskedlm
     model = BertForPreTraining.from_pretrained(cfg.embed.model_dir)
-    if cuda:
-        model = model.cuda()
-    print(f"Device: {model.device}")
+    
+    # Move model to MPS device if available
+    if use_mps:
+        model = model.to(device)
+        
+    print(f"Device: {device}")
     model.eval()
 
     data = []
-    for seq in seqs:
+    for seq in tqdm(seqs):
         input_ids = tokenizer.encode(" ".join(seq)).ids
         input_ids = torch.tensor([input_ids], dtype=torch.int64)
-        if cuda:
-            input_ids = input_ids.cuda()
+        
+        # Move input to the same device as the model
+        if use_mps:
+            input_ids = input_ids.to(device)
 
         with torch.no_grad():
             outputs = model(input_ids, labels=input_ids, output_hidden_states=True)

@@ -8,6 +8,10 @@ __pycache__/
 # C extensions
 *.so
 
+*.txt
+*.fasta
+*.npy
+
 # Distribution / packaging
 .Python
 build/
