@@ -195,7 +195,7 @@ def main(cfg):
         )
 
         ### Update args and print
-        if cfg.cuda and not torch.cuda.is_available():
+        if cfg.cuda and not torch.backends.mps.is_available(): # Replaced it with CUDA
             cfg.cuda = False
         print("\nParameters:")
         for attr, value in sorted(cfg.__dict__.items()):
