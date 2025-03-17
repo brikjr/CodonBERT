@@ -1,6 +1,6 @@
 eval:
-  model_dir: ""
-  data_path: ""
+  model_dir: "../../model"
+  data_path: "../../data/car_t_cds.fasta"
   max_length: 1024
   hidden_size: 768
   inter_size: 3072
@@ -12,7 +12,7 @@ eval:
   save_steps: 320
   num_epoches: 10
 embed:
-  data_path: ""
-  model_dir: ""
-  output_path: ""
+  model_dir: "../../model"
+  data_path: "../../data/car_t_cds.fasta"
+  output_path: "../../output/car-t.npy"
   max_length: 1024

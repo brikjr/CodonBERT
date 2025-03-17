@@ -1,0 +1,41 @@
+# mRNA Predictor Configuration
+
+# Data settings
+data:
+  embeddings_path: "seq.npy"              # Path to CodonBERT embeddings
+  labels_path: "expression_values.npy"    # Path to expression/target values
+  test_size: 0.2                          # Fraction of data used for validation
+  random_seed: 42                         # Random seed for reproducibility
+
+# Model architecture
+model:
+  embedding_dim: 768                      # Dimension of CodonBERT embeddings
+  hidden_dims: [512, 256]                 # Hidden layer dimensions
+  dropout_rate: 0.3                       # Dropout rate for regularization
+  activation: "relu"                      # Activation function (relu, leaky_relu, selu)
+
+# Training parameters
+training:
+  batch_size: 32                          # Batch size for training
+  num_epochs: 100                         # Maximum number of training epochs
+  optimizer: "sgd"                        # Optimizer type (sgd, adam, adamw)
+  initial_lr: 0.01                        # Initial learning rate
+  momentum: 0.9                           # Momentum for SGD
+  weight_decay: 0.00001                   # L2 regularization strength
+
+# Early stopping and learning rate scheduling
+callbacks:
+  early_stopping:
+    patience: 10                          # Early stopping patience
+    min_delta: 0.0001                     # Minimum change to count as improvement
+  lr_scheduler:
+    type: "plateau"                       # Scheduler type (plateau, step, cosine)
+    factor: 0.5                           # Factor to reduce learning rate by
+    patience: 5                           # Epochs to wait before reducing LR
+    min_lr: 0.000001                      # Minimum learning rate
+
+# Output and logging
+output:
+  checkpoint_dir: "checkpoints"           # Directory to save model checkpoints
+  logs_dir: "tensorboard_logs"            # Directory for TensorBoard logs
+  plot_dir: "plots"                       # Directory for saving plots
