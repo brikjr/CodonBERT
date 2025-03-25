@@ -178,3 +178,12 @@ mrna_models/
 *.npy
 *.pt
 .hydra
+
+# Model files
+Pre-FF/output/fine_tuned/
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.hdf5
