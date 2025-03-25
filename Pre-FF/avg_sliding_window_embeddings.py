@@ -5,9 +5,9 @@ import pandas as pd
 from collections import defaultdict
 
 # Define paths
-embeddings_dir = "/Users/brik/Projects/ML/CodonBERT/output/sliding_window_npy"
+embeddings_dir = "/Users/brik/Projects/ML/CodonBERT/output/ires_sliding_window_npy"
 csv_path = "/Users/brik/Projects/ML/CodonBERT/data/car_t_mrna_dataset.csv"
-mapping_path = "/Users/brik/Projects/ML/CodonBERT/output/sliding_window_npy/file_mapping.csv"
+mapping_path = "/Users/brik/Projects/ML/CodonBERT/output/ires_sliding_window_npy/ires_file_mapping.csv"
 output_dir = "/Users/brik/Projects/ML/CodonBERT/output/processed"
 
 # Create output directory if it doesn't exist
@@ -122,7 +122,7 @@ for i, (file_name, gene_name) in enumerate(included_files):
     print(f"  {i}: {file_name} -> {gene_name}")
 
 # Save the processed data
-np.save(os.path.join(output_dir, "embeddings.npy"), all_embeddings)
+np.save(os.path.join(output_dir, "ires_embeddings.npy"), all_embeddings)
 
 # Save the labels as a Python file
 with open(os.path.join(output_dir, "labels.py"), "w") as f:
@@ -151,6 +151,6 @@ with open(os.path.join(output_dir, "processing_report.txt"), "w") as f:
         f.write(f"  {i}: {file_name} -> {gene_name}\n")
 
 print(f"Processed {len(all_embeddings)} gene embeddings")
-print(f"Saved embeddings to {os.path.join(output_dir, 'embeddings.npy')}")
-print(f"Saved labels to {os.path.join(output_dir, 'labels.py')} and {os.path.join(output_dir, 'labels.csv')}")
-print(f"Saved processing report to {os.path.join(output_dir, 'processing_report.txt')}")
+print(f"Saved embeddings to {os.path.join(output_dir, 'ires_embeddings.npy')}")
+print(f"Saved labels to {os.path.join(output_dir, 'ires_labels.py')} and {os.path.join(output_dir, 'ires_labels.csv')}")
+print(f"Saved processing report to {os.path.join(output_dir, 'ires_processing_report.txt')}")

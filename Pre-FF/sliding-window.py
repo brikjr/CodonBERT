@@ -39,5 +39,5 @@ def generate_windows(input_fasta_path, output_directory_path, window_size=300):
             output_file.write(fasta_text)
 
 # Example usage
-output_directory_path = 'sliding_window/'
-generate_windows("car_t_cds.fasta", output_directory_path)
+output_directory_path = '../data/ires_sliding_window/'
+generate_windows("../data/car_t_ires.fasta", output_directory_path)

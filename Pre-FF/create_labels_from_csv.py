@@ -140,10 +140,10 @@ if category_unknown_genes:
     print(f"Unmatched genes examples: {category_unknown_genes[:5]}")
 
 # Save the protein families as a NumPy array
-np.save(os.path.join(output_dir, "protein_families.npy"), np.array(protein_families))
+np.save(os.path.join(output_dir, "ires_protein_families.npy"), np.array(protein_families))
 
 # Save the functional categories as a NumPy array
-np.save(os.path.join(output_dir, "functional_categories.npy"), np.array(functional_categories))
+np.save(os.path.join(output_dir, "ires_functional_categories.npy"), np.array(functional_categories))
 
 # Save protein families as a Python file
 with open(os.path.join(output_dir, "protein_families.py"), "w") as f:
@@ -175,5 +175,5 @@ with open(os.path.join(output_dir, "functional_categories.py"), "w") as f:
     for category, count in sorted(category_counts.items()):
         f.write(f"# {category}: {count}\n")
 
-print(f"Saved protein families to {os.path.join(output_dir, 'protein_families.npy')} and {os.path.join(output_dir, 'protein_families.py')}")
-print(f"Saved functional categories to {os.path.join(output_dir, 'functional_categories.npy')} and {os.path.join(output_dir, 'functional_categories.py')}")
+print(f"Saved protein families to {os.path.join(output_dir, 'ires_protein_families.npy')} and {os.path.join(output_dir, 'protein_families.py')}")
+print(f"Saved functional categories to {os.path.join(output_dir, 'ires_functional_categories.npy')} and {os.path.join(output_dir, 'functional_categories.py')}")

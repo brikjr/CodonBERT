@@ -1,10 +1,10 @@
 #!/bin/bash
-FASTA_DIR="/Users/brik/Projects/ML/CodonBERT/data/sliding_window"
+FASTA_DIR="/Users/brik/Projects/ML/CodonBERT/data/ires_sliding_window"
 CONFIG_TEMPLATE="config.yaml"
-OUT_DIR="/Users/brik/Projects/ML/CodonBERT/output/sliding_window_npy"
+OUT_DIR="/Users/brik/Projects/ML/CodonBERT/output/ires_sliding_window_npy"
 DIGITS=5
 MODEL_DIR="/Users/brik/Projects/ML/CodonBERT/model"
-MAPPING_FILE="${OUT_DIR}/file_mapping.csv"
+MAPPING_FILE="${OUT_DIR}/ires_file_mapping.csv"
 
 # Ensure OUT_DIR exists
 mkdir -p "${OUT_DIR}"
